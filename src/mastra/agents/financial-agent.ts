@@ -43,7 +43,7 @@ SUCCESS CRITERIA
 TOOLS
 - Use the getTransactions tool to fetch financial transaction data.
 - Analyze the transaction data to answer user questions about their spending.`,
-  model: openai("gpt-4o"), // You can use "gpt-3.5-turbo" if you prefer
+  model: openai("gpt-4o-mini"), // You can use "gpt-3.5-turbo" if you prefer
   tools: { getTransactionsTool }, // Add our tool here
   memory: new Memory({
     storage: new LibSQLStore({
