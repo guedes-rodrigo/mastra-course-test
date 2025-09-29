@@ -3,11 +3,30 @@ import { Agent } from "@mastra/core/agent";
 import { LibSQLStore } from "@mastra/libsql";
 import { MCPClient } from "@mastra/mcp";
 import { Memory } from "@mastra/memory";
+import { createSmitheryUrl } from "@smithery/sdk";
 import { getTransactionsTool } from "../tools/get-transactions-tool";
+
+// Create Smithery GitHub MCP URL
+const smitheryGithubMCPServerUrl = createSmitheryUrl(
+  "https://server.smithery.ai/@smithery-ai/github",
+  {
+    apiKey: process.env.SMITHERY_API_KEY,
+    profile: process.env.SMITHERY_PROFILE,
+  }
+);
 
 const mcp = new MCPClient({
   servers: {
-    // We'll add servers in the next steps
+    zapier: {
+      url: new URL(process.env.ZAPIER_MCP_URL || ""),
+    },
+    github: {
+      url: smitheryGithubMCPServerUrl,
+    },
+    hackernews: {
+      command: "npx",
+      args: ["-y", "@devabdultech/hn-mcp-server"],
+    },
   },
 });
 
