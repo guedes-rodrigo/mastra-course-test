@@ -27,6 +27,10 @@ const mcp = new MCPClient({
       command: "npx",
       args: ["-y", "@devabdultech/hn-mcp-server"],
     },
+    filesystem: {
+      command: "npx",
+      args: ["-y", "@modelcontextprotocol/server-filesystem", "."],
+    },
   },
 });
 
