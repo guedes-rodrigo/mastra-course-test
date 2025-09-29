@@ -63,7 +63,7 @@ TOOLS
 - Use the getTransactions tool to fetch financial transaction data.
 - Analyze the transaction data to answer user questions about their spending.`,
   model: openai("gpt-4o-mini"), // You can use "gpt-3.5-turbo" if you prefer
-  tools: { getTransactionsTool }, // Add our tool here
+  tools: { getTransactionsTool, ...(await mcp.getTools()) }, // Add our tool here
   memory: new Memory({
     storage: new LibSQLStore({
       url: "file:../../memory.db", // local file-system database. Location is relative to the output directory `.mastra/output`
