@@ -72,5 +72,5 @@ TOOLS
     storage: new LibSQLStore({
       url: "file:../../memory.db", // local file-system database. Location is relative to the output directory `.mastra/output`
     }),
-  }), // Add memory here
+  }),
 });
