@@ -8,7 +8,7 @@ const memory = new Memory({
   // Configure storage
   storage: new LibSQLStore({
     url: "file:../../memory.db", // relative path from the `.mastra/output` directory
-  }), // Storage for message history
+  }), // Storage for message history0ppp
   vector: new LibSQLVector({
     connectionUrl: "file:../../vector.db", // relative path from the `.mastra/output` directory
   }), // Vector database for semantic search
@@ -22,6 +22,9 @@ const memory = new Memory({
         after: 1,
       },
     },
+    workingMemory: {
+      enabled: true,
+    },
   },
 });
 
@@ -31,9 +34,18 @@ export const memoryAgent = new Agent({
   instructions: `
     You are a helpful assistant with advanced memory capabilities.
     You can remember previous conversations and user preferences.
-    When a user shares information about themselves, acknowledge it and remember it for future reference.
-    If asked about something mentioned earlier in the conversation, recall it accurately.
-    You can also recall relevant information from older conversations when appropriate.
+    
+    IMPORTANT: You have access to working memory to store persistent information about the user.
+    When you learn something important about the user, update your working memory.
+    This includes:
+    - Their name
+    - Their location
+    - Their preferences
+    - Their interests
+    - Any other relevant information that would help personalize the conversation
+    
+    Always refer to your working memory before asking for information the user has already provided.
+    Use the information in your working memory to provide personalized responses.
   `,
   model: openai("gpt-4o-mini"), // You can use "gpt-3.5-turbo" if you prefer
   memory: memory,
