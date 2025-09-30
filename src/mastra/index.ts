@@ -8,7 +8,11 @@ import { weatherWorkflow } from "./workflows/weather-workflow";
 
 export const mastra = new Mastra({
   workflows: { weatherWorkflow },
-  agents: { weatherAgent, financialAgent, memoryAgent },
+  agents: {
+    weatherAgent,
+    financialAgent,
+    memoryAgent, // Comprehensive memory-enhanced agent with conversation history, semantic recall, and working memory
+  },
   storage: new LibSQLStore({
     // stores telemetry, evals, ... into memory storage, if it needs to persist, change to file:../mastra.db
     url: ":memory:",
