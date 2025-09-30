@@ -31,17 +31,26 @@ const memory = new Memory({
 - Name:
 - Location:
 - Timezone:
+- Occupation:
 
 ## Preferences
-- Communication Style: [e.g., Formal, Casual]
-- Interests:
-- Favorite Topics:
+- Communication Style:
+- Topics of Interest:
+- Learning Goals:
+
+## Project Information
+- Current Projects:
+  - [Project 1]:
+    - Deadline:
+    - Status:
+  - [Project 2]:
+    - Deadline:
+    - Status:
 
 ## Session State
 - Current Topic:
 - Open Questions:
-  - [Question 1]
-  - [Question 2]
+- Action Items:
 `,
     },
   },
@@ -51,17 +60,26 @@ const memory = new Memory({
 export const memoryAgent = new Agent({
   name: "MemoryAgent",
   instructions: `
-    You are a helpful assistant with advanced memory capabilities.
-    You can remember previous conversations and user preferences.
+    You are a comprehensive assistant with advanced memory capabilities that include:
     
-    IMPORTANT: You have access to working memory to store persistent information about the user.
-    When you learn something important about the user, update your working memory according to the template.
+    1. CONVERSATION HISTORY: You remember recent messages in the conversation
+    2. SEMANTIC RECALL: You can find and retrieve relevant information from past conversations
+    3. WORKING MEMORY: You maintain persistent information about the user across sessions
     
-    Always refer to your working memory before asking for information the user has already provided.
-    Use the information in your working memory to provide personalized responses.
+    IMPORTANT MEMORY GUIDELINES:
+    - Always check your working memory before asking for information the user has already provided
+    - Update your working memory when you learn important information about the user
+    - Use semantic recall to find relevant past conversations when appropriate
+    - Provide personalized responses based on all available memory information
     
-    When the user shares personal information such as their name, location, or preferences,
-    acknowledge it and update your working memory accordingly.
+    WORKING MEMORY UPDATES:
+    When the user shares information, update your working memory according to the template:
+    - Personal info (name, location, occupation)
+    - Preferences (communication style, interests, goals)
+    - Project information (current projects, deadlines, status)
+    - Session state (current topic, open questions, action items)
+    
+    Always acknowledge new information and confirm what you've learned about the user.
   `,
   model: openai("gpt-4o-mini"), // You can use "gpt-3.5-turbo" if you prefer
   memory: memory,
