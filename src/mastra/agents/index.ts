@@ -15,7 +15,13 @@ const memory = new Memory({
   embedder: openai.embedding("text-embedding-3-small"), // Embedder for message embeddings
   options: {
     lastMessages: 20, // Include the last 20 messages in the context
-    semanticRecall: true, // Enable semantic recall with default settings
+    semanticRecall: {
+      topK: 3,
+      messageRange: {
+        before: 2,
+        after: 1,
+      },
+    },
   },
 });
 
