@@ -1,13 +1,20 @@
 import { openai } from "@ai-sdk/openai";
 import { Agent } from "@mastra/core/agent";
-import { LibSQLStore } from "@mastra/libsql";
+import { LibSQLStore, LibSQLVector } from "@mastra/libsql";
 import { Memory } from "@mastra/memory";
 
-// Create a basic memory instance
+// Create a memory instance with custom conversation history settings
 const memory = new Memory({
+  // Configure storage
   storage: new LibSQLStore({
-    url: "file:../../memory.db", // relative path from the `.mastra/output` directory
+    url: "file:../../memory.db", // Local database. Relative to the output folder
   }),
+  vector: new LibSQLVector({
+    connectionUrl: "file:../../vector.db", // relative path from the `.mastra/output` directory
+  }),
+  options: {
+    lastMessages: 20, // Include the last 20 messages in the context instead of the default 10
+  },
 });
 
 // Create an agent with memory
