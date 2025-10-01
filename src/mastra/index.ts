@@ -6,11 +6,14 @@ import { contentAgent } from "./agents/content-agent";
 import { financialAgent } from "./agents/financial-agent";
 import { learningAssistantAgent } from "./agents/learning-assistant";
 import { weatherAgent } from "./agents/weather-agent";
-import { contentWorkflow } from "./workflows/content-workflow";
+import {
+  aiContentWorkflow,
+  contentWorkflow,
+} from "./workflows/content-workflow";
 import { weatherWorkflow } from "./workflows/weather-workflow";
 
 export const mastra = new Mastra({
-  workflows: { weatherWorkflow, contentWorkflow },
+  workflows: { weatherWorkflow, contentWorkflow, aiContentWorkflow },
   agents: {
     weatherAgent,
     financialAgent,
