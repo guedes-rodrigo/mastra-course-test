@@ -129,7 +129,7 @@ const generateSummaryStep = createStep({
 
 export const contentWorkflow = createWorkflow({
   id: "content-processing-workflow",
-  description: "Validates and enhances content",
+  description: "Validates, enhances, and summarizes content",
   inputSchema: z.object({
     content: z.string(),
     type: z.enum(["article", "blog", "social"]).default("article"),
