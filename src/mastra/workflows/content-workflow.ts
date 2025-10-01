@@ -1,4 +1,4 @@
-import { createStep } from "@mastra/core/workflows";
+import { createStep, createWorkflow } from "@mastra/core/workflows";
 import { z } from "zod";
 
 const validateContentStep = createStep({
@@ -75,3 +75,25 @@ const enhanceContentStep = createStep({
     };
   },
 });
+
+export const contentWorkflow = createWorkflow({
+  id: "content-processing-workflow",
+  description: "Validates and enhances content",
+  inputSchema: z.object({
+    content: z.string(),
+    type: z.enum(["article", "blog", "social"]).default("article"),
+  }),
+  outputSchema: z.object({
+    content: z.string(),
+    type: z.string(),
+    wordCount: z.number(),
+    metadata: z.object({
+      readingTime: z.number(),
+      difficulty: z.enum(["easy", "medium", "hard"]),
+      processedAt: z.string(),
+    }),
+  }),
+})
+  .then(validateContentStep)
+  .then(enhanceContentStep)
+  .commit();
