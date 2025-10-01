@@ -2,6 +2,7 @@ import { Mastra } from "@mastra/core/mastra";
 import { LibSQLStore } from "@mastra/libsql";
 import { PinoLogger } from "@mastra/loggers";
 import { memoryAgent } from "./agents";
+import { contentAgent } from "./agents/content-agent";
 import { financialAgent } from "./agents/financial-agent";
 import { learningAssistantAgent } from "./agents/learning-assistant";
 import { weatherAgent } from "./agents/weather-agent";
@@ -13,6 +14,7 @@ export const mastra = new Mastra({
   agents: {
     weatherAgent,
     financialAgent,
+    contentAgent, // AI agent for analyzing and improving content
     memoryAgent, // Comprehensive memory-enhanced agent with conversation history, semantic recall, and working memory
     learningAssistantAgent, // Specialized learning assistant with educational memory template
   },
