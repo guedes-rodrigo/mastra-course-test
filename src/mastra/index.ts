@@ -17,8 +17,8 @@ export const mastra = new Mastra({
     learningAssistantAgent, // Specialized learning assistant with educational memory template
   },
   storage: new LibSQLStore({
-    // stores telemetry, evals, ... into memory storage, if it needs to persist, change to file:../mastra.db
-    url: ":memory:",
+    // stores telemetry, evals, ... into memory storage
+    url: "file::memory:",
   }),
   logger: new PinoLogger({
     name: "Mastra",
