@@ -8,6 +8,7 @@ import { learningAssistantAgent } from "./agents/learning-assistant";
 import { weatherAgent } from "./agents/weather-agent";
 import {
   aiContentWorkflow,
+  conditionalWorkflow,
   contentWorkflow,
   parallelAnalysisWorkflow,
 } from "./workflows/content-workflow";
@@ -19,6 +20,7 @@ export const mastra = new Mastra({
     contentWorkflow,
     aiContentWorkflow,
     parallelAnalysisWorkflow,
+    conditionalWorkflow,
   },
   agents: {
     weatherAgent,
